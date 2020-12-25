@@ -8,7 +8,6 @@
 
 int main(int argc, char *argv[])
 {
-		FILE *fp;
 		int line_number = 0;
 		size_t lenght = 0;
 		char *tokens;
@@ -20,42 +19,29 @@ int main(int argc, char *argv[])
 			exit(EXIT_FAILURE);
 		}
 
-		fp = fopen(argv[1], "r");
-		if (!fp)
+		gvar.file = fopen(argv[1], "r");
+		if (!gvar.file)
 		{
 			fprintf(stderr, "Error: Can't open file %s", argv[1]);
 			exit(EXIT_FAILURE);
 		}
 
-		while (getline(&gvar.line, &lenght, gvar.file) != -1)
+		while (getline(&gvar.line, &lenght, gvar.file) != EOF)
 		{
 			line_number++;
-			tokens = strtok(gvar.line, " \n\t");
-			if (tokens || tokens[0] != '#')
+			if(gvar.line)
 			{
-				match_function(tokens, line_number);
+				tokens = strtok(gvar.line, " \n\t");
+			
+				if (tokens)
+				{
+					match_function(tokens, line_number);
+				}
 			}
 
 		}
-		fclose(fp);
+		noleaks();
 		return (EXIT_SUCCESS);
 }
 
-/**
- *
- *
- */
 
-void noleaks(void)
-{
-	stack_t *temp;
-
-	while (gvar.stack)
-	{
-		temp = gvar.stack->next;
-		free(gvar.stack);
-		gvar.stack = temp;
-	}
-
-	free(gvar.line);
-}

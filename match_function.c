@@ -26,7 +26,7 @@ int match_function(char *tokens, int line_number)
 			}
 	}	
 	fprintf(stderr, "L %d: unknown instruction %s", line_number, tokens);
-	/*no_leaks();*/
+	/*noleaks();*/
 	exit (EXIT_FAILURE);
 }
 

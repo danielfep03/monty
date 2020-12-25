@@ -7,28 +7,27 @@
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
 	stack_t *temp = *stack;
 	char *n;
 	int num;
    
 	n = strtok(NULL, " \n\t");
 
+	if (!n || !(isdigit(*n)))
+	{
+		fprintf(2, "L%d: usage: push integer", line_number);
+		noleaks();
+		exit (EXIT_FAILURE);
+	}
+
+	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
 		dprintf(2, "Error: malloc failed\n");
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
-
-	if (!(isdigit(*n)))
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		noleaks();
-		exit(EXIT_FAILURE);
-	}
-
-	num = atoi(n);
 	
 	if (!*stack)
 	{

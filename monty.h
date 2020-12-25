@@ -47,7 +47,7 @@ typedef struct global_s
 } global_t;
 
 extern global_t gvar;
-
+global_t gvar;
 
 /*-------------- Utilities --------------------*/
 
