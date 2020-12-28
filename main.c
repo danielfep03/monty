@@ -12,7 +12,10 @@ int main(int argc, char *argv[])
 		unsigned int line_number = 0;
 		size_t lenght = 0;
 		char *tokens = NULL;
-
+		
+		gvar.stack = NULL;
+		gvar.line = NULL;
+		gvar.file = NULL;
 
 		if (argc != 2)
 		{

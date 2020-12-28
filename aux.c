@@ -9,7 +9,7 @@
 
 int is_number(char *number, int line_number)
 {
-	int i = 0, num;
+	int i = 0, num = 0;
 
 	if (number[0] == '-')
 		i++;

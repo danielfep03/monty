@@ -9,20 +9,17 @@
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
-	stack_t *temp = *stack;
-	char *n;
-	int num;
+	stack_t *new_node = NULL;
+	char *n = NULL;
+	int num = 0; 
 
 	n = strtok(NULL, " \n\t");
-
 	if (!n)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
-
 	num = is_number(n, line_number);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
@@ -40,13 +37,10 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		while (temp->next)
-			temp = temp->next;
-
-		temp->next = new_node;
-		new_node->prev = temp;
+		new_node->prev = NULL;
 		new_node->n = num;
-		new_node->next = NULL;
+		new_node->next = *stack;
+		*stack = new_node;
 	}
 }
 
@@ -65,5 +59,21 @@ void _pall(stack_t **stack, unsigned int line_number)
 	{
 		for (temp = *stack; temp; temp = temp->next)
 			printf("%d\n", temp->n);
+	}
+}
+
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	(void) (line_number);
+
+	if (*stack)
+	{
+		printf("%d\n", (*stack)->n);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		noleaks();
+		exit(EXIT_FAILURE);
 	}
 }

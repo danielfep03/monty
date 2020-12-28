@@ -7,7 +7,7 @@
 
 void noleaks(void)
 {
-	stack_t *temp;
+	stack_t *temp = NULL;
 
 	while (gvar.stack)
 	{
