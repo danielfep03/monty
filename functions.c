@@ -31,7 +31,6 @@ void _push(stack_t **stack, unsigned int line_number)
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
-
 	if (!*stack)
 	{
 		new_node->next = NULL;
