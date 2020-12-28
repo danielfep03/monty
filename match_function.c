@@ -19,13 +19,14 @@ int match_function(char *tokens, unsigned int line_number)
 		{"NULL", NULL}
 	};
 
-	for (i = 0; functions[i].opcode; i++)
+	while (functions[i].opcode)
 	{
-		if (strcmp(functions[i].opcode, temp) == 0)
+		if (strcmp(functions[i].opcode, tokens) == 0)
 		{
 			functions[i].f(&gvar.stack, line_number);
 			return (0);
 		}
+		i++;
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, temp);
 	noleaks();

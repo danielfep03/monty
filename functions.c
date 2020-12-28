@@ -11,7 +11,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 	char *n = NULL;
-	int num = 0; 
+	int num = 0;
 
 	n = strtok(NULL, " \n\t");
 	if (!n)
@@ -61,6 +61,12 @@ void _pall(stack_t **stack, unsigned int line_number)
 			printf("%d\n", temp->n);
 	}
 }
+
+/**
+ * _pint - Print the last element of the satck
+ * @stack: head of the stack
+ * @line_number: Line number
+ */
 
 void _pint(stack_t **stack, unsigned int line_number)
 {
