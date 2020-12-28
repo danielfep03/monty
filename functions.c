@@ -1,8 +1,10 @@
 #include "monty.h"
 
 /**
- *
- *
+ * _push - Add new node to the stack
+ * @stack: Head of the stack
+ * @line_number: Number of the line read
+ * Return: No return
  */
 
 void _push(stack_t **stack, unsigned int line_number)
@@ -11,24 +13,25 @@ void _push(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 	char *n;
 	int num;
-   
-	n = strtok(NULL, " \n\t");
 
-	if (!n || !(isdigit(*n)))
-	{
-		fprintf(2, "L%d: usage: push integer", line_number);
-		noleaks();
-		exit (EXIT_FAILURE);
-	}
+	n = strtok(NULL, " \n\t\r");
 
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
+	if (!n)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
-	
+
+	num = is_number(n, line_number);
+	new_node = malloc(sizeof(stack_t));
+	if (!new_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		noleaks();
+		exit(EXIT_FAILURE);
+	}
+
 	if (!*stack)
 	{
 		new_node->next = NULL;
@@ -49,9 +52,9 @@ void _push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- *
- *
- *
+ * _pall - Function to prints all the stack
+ * @stack: Head of the stack
+ * @line_number: Number of the line read
  */
 
 void _pall(stack_t **stack, unsigned int line_number)
@@ -62,6 +65,6 @@ void _pall(stack_t **stack, unsigned int line_number)
 	if (*stack)
 	{
 		for (temp = *stack; temp; temp = temp->next)
-			printf("%d\n", temp->n);	
-	}	
+			printf("%d\n", temp->n);
+	}
 }

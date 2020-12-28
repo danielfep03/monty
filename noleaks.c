@@ -1,8 +1,7 @@
 #include "monty.h"
 
 /**
- *
- *
+ * noleaks - Function to free memory
  *
  */
 

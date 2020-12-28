@@ -38,12 +38,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct global_s - Global variables
+ * @file: File to read
+ * @stack: Pointer to the head of a list
+ * @line: Readed line
+ */
 typedef struct global_s
 {
 	FILE *file;
 	stack_t *stack;
 	char *line;
-	char isStack;
 } global_t;
 
 extern global_t gvar;
@@ -51,8 +56,9 @@ global_t gvar;
 
 /*-------------- Utilities --------------------*/
 
-int match_function(char *tokens, int line_number);
+int match_function(char *tokens, unsigned int line_number);
 void noleaks(void);
+int is_number(char *number, int line_number);
 
 
 /*-------------- Features  -------------------*/
