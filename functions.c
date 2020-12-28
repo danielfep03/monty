@@ -14,7 +14,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *n;
 	int num;
 
-	n = strtok(NULL, " \n\t\r");
+	n = strtok(NULL, " \n\t");
 
 	if (!n)
 	{
