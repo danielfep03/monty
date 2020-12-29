@@ -83,3 +83,26 @@ void _pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ * _pop - Removes the top element of the stack
+ * @stack: Head of the stack
+ * @line_number: Number of the readed line
+ */
+void _pop(stack_t **stack, unsigned int line_number)
+{
+		stack_t *temp;
+
+	if (!stack || !*stack)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		noleaks();
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+
+	*stack = (*stack)->next;
+
+	free(temp);
+}
