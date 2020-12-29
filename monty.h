@@ -56,7 +56,7 @@ global_t gvar;
 
 /*-------------- Utilities --------------------*/
 
-int match_function(char *tokens, unsigned int line_number);
+void match_function(char *tokens, unsigned int line_number);
 void noleaks(void);
 int is_number(char *number, int line_number);
 

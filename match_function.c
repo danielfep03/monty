@@ -7,16 +7,15 @@
  * Return: 0 in success
  */
 
-int match_function(char *tokens, unsigned int line_number)
+void match_function(char *tokens, unsigned int line_number)
 {
 	int i = 0;
-	char *temp = tokens;
 
 	instruction_t functions[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
-		{"NULL", NULL}
+		{NULL, NULL}
 	};
 
 	while (functions[i].opcode)
@@ -24,12 +23,16 @@ int match_function(char *tokens, unsigned int line_number)
 		if (strcmp(functions[i].opcode, tokens) == 0)
 		{
 			functions[i].f(&gvar.stack, line_number);
-			return (0);
+			break;
 		}
 		i++;
 	}
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, temp);
-	noleaks();
-	exit(EXIT_FAILURE);
+	
+	if(!functions[i].opcode)
+	{
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, tokens);
+			noleaks();
+			exit(EXIT_FAILURE);
+	}
 }
 
