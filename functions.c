@@ -109,8 +109,8 @@ void _pop(stack_t **stack, unsigned int line_number)
 
 /**
  * _swap - Swaps the top two elements of the stack
- * @stack:
- * @line_numbe
+ * @stack: Head of the stack
+ * @line_number: Number of line
  */
 
 
@@ -125,7 +125,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
-	
+
 	data = temp->n;
 	temp->n = temp->next->n;
 	temp->next->n = data;
