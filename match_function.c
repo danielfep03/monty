@@ -27,12 +27,11 @@ void match_function(char *tokens, unsigned int line_number)
 		}
 		i++;
 	}
-	
-	if(!functions[i].opcode)
+	if (!functions[i].opcode)
 	{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, tokens);
-			noleaks();
-			exit(EXIT_FAILURE);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, tokens);
+		noleaks();
+		exit(EXIT_FAILURE);
 	}
 }
 
