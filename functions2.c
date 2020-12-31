@@ -9,7 +9,7 @@
 void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-	int add;  
+	int add;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
@@ -26,13 +26,13 @@ void _add(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
 
-	free(temp);	
+	free(temp);
 }
 
 
 /**
  * _nop - Doesn't do anything.
- * @stack: Nothing 
+ * @stack: Nothing
  * @line_number: Nothing
  */
 
@@ -40,5 +40,4 @@ void _nop(stack_t **stack, unsigned int line_number)
 {
 	(void) (stack);
 	(void) (line_number);
-	return;
 }
