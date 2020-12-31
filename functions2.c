@@ -9,16 +9,17 @@
 void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
-	int add = (*stack)->n + (*stack)->next->n;
+	int add;  
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		noleaks();
 		exit(EXIT_FAILURE);
 	}
 
 	temp = *stack;
+	add = (*stack)->n + (*stack)->next->n;
 
 	(*stack)->next->n = add;
 
