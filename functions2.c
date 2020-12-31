@@ -28,3 +28,15 @@ void _add(stack_t **stack, unsigned int line_number)
 
 	free(temp);	
 }
+
+
+/**
+ * _nop - Doesn't do anything.
+ * @stack: Nothing 
+ * @line_number: Nothing
+ */
+
+void _nop(stac_t **stack, unsigned int line_number)
+{
+	return;
+}
